@@ -181,3 +181,9 @@ body {
     width: 210px !important;
     margin: 0 auto;
 }
+
+#editProductImage {
+    width:100%;
+    border-radius:5px;
+    border: 1px solid #BBB9B9;
+}

@@ -1,4 +1,6 @@
 *.db
+*.db-wal
+**/wwwroot/images/products
 
 # globs
 Makefile.in

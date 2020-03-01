@@ -3,14 +3,16 @@ using System;
 using Bookstore.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bookstore.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200228181600_AddedProductModel")]
+    partial class AddedProductModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,7 +57,6 @@ namespace Bookstore.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Author")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("CategoryId")
@@ -68,7 +69,6 @@ namespace Bookstore.DataAccess.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ISBN")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ImageUrl")
@@ -87,7 +87,6 @@ namespace Bookstore.DataAccess.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

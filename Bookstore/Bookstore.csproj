@@ -43,6 +43,7 @@
     <Folder Include="Areas\Admin\Views\Product\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\products\" />
+    <Folder Include="Areas\Admin\Views\Company\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="app.db" />

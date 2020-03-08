@@ -8,6 +8,7 @@
     <Folder Include="Data\" />
     <Folder Include="Repository\" />
     <Folder Include="Repository\IRepository\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />

@@ -187,3 +187,13 @@ body {
     border-radius:5px;
     border: 1px solid #BBB9B9;
 }
+
+.card-img-top {
+    max-height: 200px;
+    min-height: 200px;
+    object-fit: cover;
+}
+
+.fixed-card-size {
+    min-height: 370px;
+}

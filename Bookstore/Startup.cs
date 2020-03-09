@@ -14,6 +14,8 @@ using Microsoft.Extensions.Hosting;
 using Bookstore.Models;
 using Bookstore.DataAccess.Repository.IRepository;
 using Bookstore.DataAccess.Repository;
+using Bookstore.Utility;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace Bookstore
 {
@@ -32,9 +34,10 @@ namespace Bookstore
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders() // options => options.SignIn.RequireConfirmedAccount = true
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IEmailSender, EmailSender>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }

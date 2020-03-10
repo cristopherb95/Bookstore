@@ -40,6 +40,19 @@ namespace Bookstore
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Account/Login";
+                options.LogoutPath = $"/Identity/Account/Logout";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            services.AddAuthentication().AddGoogle(options =>
+            {
+                options.ClientId = Configuration.GetValue<string>("GoogleApi:Id");
+                options.ClientSecret = Configuration.GetValue<string>("GoogleApi:Secret");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

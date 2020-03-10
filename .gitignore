@@ -1,7 +1,8 @@
 *.db
 *.db-wal
 **/wwwroot/images/products
-
+Bookstore/appsettings.json
+s
 # globs
 Makefile.in
 *.userprefs

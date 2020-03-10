@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Bookstore.DataAccess.Repository.IRepository;
 using Bookstore.Models;
+using Bookstore.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Bookstore.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

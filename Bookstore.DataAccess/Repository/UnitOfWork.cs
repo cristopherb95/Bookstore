@@ -16,6 +16,9 @@ namespace Bookstore.DataAccess.Repository
             CoverType = new CoverTypeRepository(_db);
             Product = new ProductRepository(_db);
             Company = new CompanyRepository(_db);
+            ShoppingCart = new ShoppingCartRepository(_db);
+            OrderDetails = new OrderDetailsRepository(_db);
+            OrderHeader = new OrderHeaderRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
         }
 
@@ -28,6 +31,12 @@ namespace Bookstore.DataAccess.Repository
         public IProductRepository Product { get; private set; }
 
         public ICompanyRepository Company { get; private set; }
+        
+        public IShoppingCartRepository ShoppingCart { get; private set; }
+        
+        public IOrderDetailsRepository OrderDetails { get; private set; }
+        
+        public IOrderHeaderRepository OrderHeader { get; private set; }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
 

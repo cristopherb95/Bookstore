@@ -38,6 +38,7 @@ namespace Bookstore
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<EmailOptions>(Configuration);
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
 

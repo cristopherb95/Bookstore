@@ -6,5 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
+    <PackageReference Include="SendGrid" Version="9.13.0" />
   </ItemGroup>
 </Project>

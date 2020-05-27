@@ -12,6 +12,7 @@ using Bookstore.DataAccess.Repository.IRepository;
 using Bookstore.Models;
 using Microsoft.AspNetCore.Authorization;
 using Bookstore.Utility;
+using Microsoft.AspNetCore.Http;
 
 namespace Bookstore.Areas.Customer.Controllers
 {
@@ -39,7 +40,7 @@ namespace Bookstore.Areas.Customer.Controllers
                     .GetAll(c => c.ApplicationUserId == claim.Value)
                     .ToList().Count();
 
-                HttpContext.Session.SetObject(SD.ShoppingCartSession, count);
+                HttpContext.Session.SetInt32(SD.ShoppingCartSession, count);
             }
 
             return View(productList);
@@ -87,7 +88,7 @@ namespace Bookstore.Areas.Customer.Controllers
 
                 var count = _unitOfWork.ShoppingCart.GetAll(c => c.ApplicationUserId == shoppingCart.ApplicationUserId).ToList().Count();
 
-                HttpContext.Session.SetObject(SD.ShoppingCartSession, count);
+                HttpContext.Session.SetInt32(SD.ShoppingCartSession, count);
 
                 return RedirectToAction(nameof(Index));
             }

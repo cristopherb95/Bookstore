@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Bookstore.DataAccess.Repository.IRepository;
 using Bookstore.Utility;
+using Microsoft.AspNetCore.Http;
 
 namespace Bookstore.Areas.Identity.Pages.Account
 {
@@ -90,7 +91,7 @@ namespace Bookstore.Areas.Identity.Pages.Account
                     var user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Email == Input.Email);
 
                     int count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == user.Id).Count();
-                    HttpContext.Session.SetObject(SD.ShoppingCartSession, count);
+                    HttpContext.Session.SetInt32(SD.ShoppingCartSession, count);
 
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

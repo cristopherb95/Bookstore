@@ -57,12 +57,12 @@
                                 </div>
                             </li>
                         }
-                        @if (HttpContextAccessor.HttpContext.Session.GetObject<int>(SD.ShoppingCartSession) != 0)
+                        @if (HttpContextAccessor.HttpContext.Session.GetInt32(SD.ShoppingCartSession) != 0)
                         {
                             <li class="text-white">
                                 <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link">
                                     @{
-                                        var count = HttpContextAccessor.HttpContext.Session.GetObject<int>(SD.ShoppingCartSession);
+                                        var count = HttpContextAccessor.HttpContext.Session.GetInt32(SD.ShoppingCartSession);
                                     }
                                     <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
                                 </a>

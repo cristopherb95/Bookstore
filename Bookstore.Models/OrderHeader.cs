@@ -8,19 +8,19 @@ namespace Bookstore.Models
     {
         [Key]
         public int Id { get; set; }
-        
+
         public string ApplicationUserId { get; set; }
 
         [ForeignKey(nameof(ApplicationUserId))]
         public ApplicationUser ApplicationUser { get; set; }
-        
-        [Required] 
+
+        [Required]
         public DateTime OrderDate { get; set; }
-        
-        [Required] 
+
+        [Required]
         public DateTime ShipppingDate { get; set; }
-        
-        [Required] 
+
+        [Required]
         public double OrderTotal { get; set; }
 
         public string TrackingNumber { get; set; }
@@ -36,6 +36,24 @@ namespace Bookstore.Models
         public DateTime PaymentDueDate { get; set; }
 
         public string TransactionId { get; set; }
-        
+
+        [Required]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        public string StreetAddress { get; set; }
+
+        [Required]
+        public string City { get; set; }
+
+        [Required]
+        public string State { get; set; }
+
+        [Required]
+        public string PostalCode { get; set; }
+
+        [Required]
+        public string Name { get; set; }
+
     }
 }

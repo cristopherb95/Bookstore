@@ -16,6 +16,7 @@ using Bookstore.DataAccess.Repository.IRepository;
 using Bookstore.DataAccess.Repository;
 using Bookstore.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Stripe;
 
 namespace Bookstore
 {
@@ -24,6 +25,7 @@ namespace Bookstore
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            StripeConfiguration.ApiKey = Configuration.GetSection("Stripe")["SecretKey"];
         }
 
         public IConfiguration Configuration { get; }
@@ -39,6 +41,7 @@ namespace Bookstore
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IEmailSender, EmailSender>();
             services.Configure<EmailOptions>(Configuration);
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
 

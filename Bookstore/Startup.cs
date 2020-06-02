@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bookstore.DataAccess.Data;
+using Bookstore.DataAccess.Initializer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -40,6 +42,7 @@ namespace Bookstore
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddSingleton<IEmailSender, EmailSender>();
+            services.AddScoped<IDbInitializer, DbInitializer>();
             services.Configure<EmailOptions>(Configuration);
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
@@ -67,7 +70,7 @@ namespace Bookstore
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -90,6 +93,8 @@ namespace Bookstore
             app.UseAuthentication();
             app.UseAuthorization();
 
+            dbInitializer.Initialize();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

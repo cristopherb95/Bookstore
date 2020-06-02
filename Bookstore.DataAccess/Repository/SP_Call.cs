@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Bookstore.DataAccess.Data;
 using Bookstore.DataAccess.Repository.IRepository;
 using Bookstore.Models;
 using Dapper;

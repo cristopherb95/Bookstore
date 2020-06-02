@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Bookstore.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bookstore.Models
+namespace Bookstore.DataAccess.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

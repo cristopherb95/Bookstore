@@ -24,16 +24,19 @@ namespace Bookstore.Areas.Identity.Pages.Account
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IEmailSender _emailSender;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
             UserManager<IdentityUser> userManager,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork,
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -96,6 +99,9 @@ namespace Bookstore.Areas.Identity.Pages.Account
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
+
+                ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
@@ -113,6 +119,36 @@ namespace Bookstore.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostSendVerificationEmailAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            var user = await _userManager.FindByEmailAsync(Input.Email);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            }
+
+            var userId = await _userManager.GetUserIdAsync(user);
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var callbackUrl = Url.Page(
+                "/Account/ConfirmEmail",
+                pageHandler: null,
+                values: new { userId = userId, code = code },
+                protocol: Request.Scheme);
+            await _emailSender.SendEmailAsync(
+                Input.Email,
+                "Confirm your email",
+                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+            ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             return Page();
         }
     }

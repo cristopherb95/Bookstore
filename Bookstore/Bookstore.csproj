@@ -49,6 +49,9 @@
     <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Areas\Customer\Views\Cart\" />
     <Folder Include="Areas\Admin\Views\Order\" />
+    <Folder Include="ViewComponents\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\UserName\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="app.db" />

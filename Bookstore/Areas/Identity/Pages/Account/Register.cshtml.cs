@@ -110,6 +110,14 @@ namespace Bookstore.Areas.Identity.Pages.Account
                     Value = x
                 })
             };
+            if(User.IsInRole(SD.Role_Employee))
+            {
+                Input.RoleList = _roleManager.Roles.Where(x => x.Name == SD.Role_User_Company).Select(x => x.Name).Select(x => new SelectListItem
+                {
+                    Text = x,
+                    Value = x
+                });
+            }
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }

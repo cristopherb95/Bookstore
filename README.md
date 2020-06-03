@@ -1,5 +1,5 @@
 # Bookstore
-Bookstore app made with .NET Core 3.1 MVC and Microsoft SQL Server database.
+Bookstore app made with .NET Core 3.1 MVC and Microsoft SQL Server database. DB was created with Code First approach.
 <img width="1000" alt="Screenshot at Jun 03 11-09-30" src="https://user-images.githubusercontent.com/48388060/83618456-c3f67400-a58a-11ea-9174-f351a4fffbcc.png">
 
 ## Functionality
@@ -10,6 +10,7 @@ Bookstore app made with .NET Core 3.1 MVC and Microsoft SQL Server database.
 * Repository and Unit of Work patterns are used
 * Unit tests are made with NUnit
 * jQuery DataTables plug-in is used for displaying data from the database
+* Notifications and popups are provided by SweetAlert and toastr
 
 <img width="1186" alt="book2" src="https://user-images.githubusercontent.com/48388060/83620092-218bc000-a58d-11ea-837e-294e4de8d5c4.png">
 
